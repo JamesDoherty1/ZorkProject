@@ -1,0 +1,14 @@
+# ninja log v5
+9	119	7364606508920183	CMakeFiles/ZorkProject.dir/Opponent.cpp.obj	ca1f8904081b59a1
+15	489	7364606512633369	CMakeFiles/ZorkProject.dir/Command.cpp.obj	1b4b1ee9ca8f6b2d
+42	719	7364606514915025	CMakeFiles/ZorkProject.dir/Parser.cpp.obj	e5948754afec032b
+31	626	7364606513979074	CMakeFiles/ZorkProject.dir/item.cpp.obj	c36798841610e714
+23	703	7364606514751823	CMakeFiles/ZorkProject.dir/CommandWords.cpp.obj	420ee1ba0462e1ec
+59	768	7364606515421711	CMakeFiles/ZorkProject.dir/ZorkUL.cpp.obj	f0c50ca0308ea4d4
+51	894	7364606516660667	CMakeFiles/ZorkProject.dir/Room.cpp.obj	b35a1e9924c7f94c
+6	315	7364608870120865	CMakeFiles/ZorkProject.dir/Player.cpp.obj	8a2b6d2ddb79de0e
+3	315	7364611971957364	build.ninja	a4ed2f1843db9906
+21	431	7364611976957315	CMakeFiles/ZorkProject.dir/Player.cpp.obj	8a2b6d2ddb79de0e
+26	432	7364611976957315	CMakeFiles/ZorkProject.dir/Opponent.cpp.obj	ca1f8904081b59a1
+32	493	7364611977591801	CMakeFiles/ZorkProject.dir/Character.cpp.obj	fab46a467d62326d
+493	684	7364611979443448	ZorkProject.exe	4a7204bd3f10823f
