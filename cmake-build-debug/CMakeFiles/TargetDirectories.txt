@@ -1,7 +1,7 @@
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/ZorkProject.dir
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/list_install_components.dir
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/install.dir
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/install/local.dir
-C:/Users/jkdoh/CLionProjects/ZorkProject/cmake-build-debug/CMakeFiles/install/strip.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/ZorkProject.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/list_install_components.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/install.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/install/local.dir
+C:/Users/jkdoh/CLionProjects/Zork/cmake-build-debug/CMakeFiles/install/strip.dir
