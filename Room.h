@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "item.h"
 using namespace std;
 using std::vector;
@@ -11,23 +12,27 @@ using std::vector;
 class Room {
 
 private:
-	string description;
-	map<string, Room*> exits;
-	string exitString();
-    vector <Item> itemsInRoom;
-
+    string description;
+    string taskDescription;
+    int successPercentage;
+    map<string, Room*> exits;
+    vector<Item> itemsInRoom;
 
 public:
-    int numberOfItems();
-	Room(string description);
-	void setExits(Room *north, Room *east, Room *south, Room *west);
-	string shortDescription();
-	string longDescription();
-	Room* nextRoom(string direction);
+    Room(string description);
+    void setExits(Room *north, Room *east, Room *south, Room *west);
+    string shortDescription();
+    string equipmentDescription();
+    string awardDescription();
+    string exitString();
+    stringstream descriptionStream;
+    Room* nextRoom(string direction);
     void addItem(Item *inItem);
-    string displayItem();
     int isItemInRoom(string inString);
-    void removeItemFromRoom(int location);
+    bool performTask();
+    const vector<Item>& getItems() const;
+
+    void removeItem(int index);
 };
 
 #endif
