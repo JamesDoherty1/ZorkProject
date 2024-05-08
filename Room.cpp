@@ -1,7 +1,7 @@
 #include "Room.h"
 #include <cstdlib>
 
-Room::Room(string description) {
+Room::Room(string description, Player& player) : player(player) {
     this->description = description;
 }
 
@@ -45,8 +45,11 @@ string Room::awardDescription() {
                 cout << "You have gained " + to_string(item.getAwardExperience()) + " Experience, and " +
                         to_string(item.getAwardStrength()) + " Strength" << endl;
 
-                player.addExperience(item.getAwardExperience());
-                player.addStrength(item.getAwardStrength());
+                player.addExperience(std::to_string(item.getAwardExperience()));
+                player.addStrength(std::to_string(item.getAwardStrength()));
+
+                cout<< "Total Experience: " + player.getExperience() << endl;
+                cout<< "Totsl Strength: " + player.getStrength() << endl;
             }
         }
     }

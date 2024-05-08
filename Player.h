@@ -6,7 +6,7 @@ using namespace std;
 
 class Player {
 public:
-    Player(const std::string& name, int age, const std::string& subject);
+    Player(const string& name, int age, const string& subject);
     void addExperience(string experience);
     void addStrength(string strength);
     string getExperience ();

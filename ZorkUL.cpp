@@ -12,37 +12,37 @@ int main() {
     return 0;
 }
 
-ZorkUL::ZorkUL() {
+ZorkUL::ZorkUL() : player("PlayerName", 20, "PlayerSubject") {
     createRooms();
 }
 
 void ZorkUL::createRooms()  {
     Room *entrance, *soccer, *basketball, *sprint, *swim, *chess, *tennis, *boxing, *golf;
 
-    entrance = new Room("entrance");
+    entrance = new Room("entrance", player);
 
-    soccer = new Room("soccer");
+    soccer = new Room("soccer", player);
         soccer->addItem(new Item("football", 50, "shoot"));
         soccer->addItem(new Item("cup", 25, 5));
-    basketball = new Room("basketball");
+    basketball = new Room("basketball", player);
         basketball->addItem(new Item("basketball", 80, "throw"));
         basketball->addItem(new Item("mvp", 10, 5));
-    sprint = new Room("sprint");
+    sprint = new Room("sprint", player);
         sprint->addItem(new Item("runners", 75, "sprint"));
         sprint->addItem(new Item("medal", 15, 5));
-    swim = new Room("swim");
+    swim = new Room("swim", player);
         swim->addItem(new Item("goggles", 50, "swim"));
         swim->addItem(new Item("medal", 50, 5));
-    chess = new Room("chess");
+    chess = new Room("chess", player);
         chess->addItem(new Item("king", 10, "play"));
         chess->addItem(new Item("trophy", 24, 5));
-    tennis = new Room("tennis");
+    tennis = new Room("tennis", player);
         tennis->addItem(new Item("racket", 60, "serve"));
         tennis->addItem(new Item("trophy", 24, 5));
-    boxing = new Room("boxing");
+    boxing = new Room("boxing", player);
         boxing->addItem(new Item("gloves", 30, "box"));
         boxing->addItem(new Item("belt", 1, 5));
-    golf = new Room("golf");
+    golf = new Room("golf", player);
         golf->addItem(new Item("club", 1, "swing"));
         golf->addItem(new Item("voucher", 99, 5));
 

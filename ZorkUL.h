@@ -5,13 +5,15 @@
 #include "Room.h"
 #include "Command.h"
 #include "Parser.h"
+#include "Player.h"
 
 using namespace std;
 
 class ZorkUL {
 private:
     Room *currentRoom;
-    Parser parser; // Add Parser object as a member variable
+    Parser parser;
+    Player player;
 
 public:
     ZorkUL();
