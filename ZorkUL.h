@@ -14,6 +14,7 @@ private:
     Room *currentRoom;
     Parser parser;
     Player player;
+    bool finished;
 
 public:
     ZorkUL();

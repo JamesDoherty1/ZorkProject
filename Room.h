@@ -22,17 +22,18 @@ private:
     Player& player;
 
 public:
-    Room(string description, Player& player);
+    Room(string description, Player& Player);
     void setExits(Room *north, Room *east, Room *south, Room *west);
     string shortDescription();
     string equipmentDescription();
-    string awardDescription();
+    string awardDescription(Room* currentRoom, int location);
     string exitString();
     stringstream descriptionStream;
     Room* nextRoom(string direction);
     void addItem(Item *inItem);
     int isItemInRoom(string inString);
     bool performTask();
+    bool isEmpty() const;
     const vector<Item>& getItems() const;
 
     void removeItem(int index);

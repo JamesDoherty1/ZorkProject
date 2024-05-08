@@ -15,7 +15,6 @@ Item::Item(string inDescription, int inChance, string inItemCommand) {
     isAward = false;
 }
 
-
 void Item::setStrength(int inStrength) {
     if (inStrength > 9999 || inStrength < 0)
         cout << "strength invalid, must be 0<strength<9999";

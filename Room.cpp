@@ -35,7 +35,7 @@ string Room::equipmentDescription() {
     }
     return description;
 }
-string Room::awardDescription() {
+string Room::awardDescription(Room* currentRoom, int location) {
     string description;
     if (!itemsInRoom.empty()) {
         cout << "You have won the following items:" << endl;
@@ -49,12 +49,13 @@ string Room::awardDescription() {
                 player.addStrength(std::to_string(item.getAwardStrength()));
 
                 cout<< "Total Experience: " + player.getExperience() << endl;
-                cout<< "Totsl Strength: " + player.getStrength() << endl;
+                cout<< "Total Strength: " + player.getStrength() << endl;
             }
         }
     }
     return description;
 }
+
 
 
 string Room::exitString() {
@@ -105,4 +106,8 @@ const vector<Item>& Room::getItems() const {
 
 void Room::removeItem(int index) {
     itemsInRoom.erase(itemsInRoom.begin() + index);
+}
+
+bool Room::isEmpty() const {
+    return itemsInRoom.empty();
 }

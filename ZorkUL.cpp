@@ -64,6 +64,8 @@ void ZorkUL::createRooms()  {
 void ZorkUL::printWelcome() {
     cout << "start" << endl;
     cout << "info for help" << endl;
+    cout << "Work through the arena and beat Mike Tyson to Win!";
+    cout << "To enter the boxing room you are required to have 99 Strength";
     cout << endl;
     cout << currentRoom->equipmentDescription() << endl;
 }
@@ -78,6 +80,7 @@ bool ZorkUL::processCommand(Command command) {
     if (commandWord.compare("info") == 0)
         printHelp();
 
+
     else if (commandWord.compare("map") == 0) {
         cout << "[h] --- [f] --- [g]" << endl;
         cout << "         |         " << endl;
@@ -86,8 +89,11 @@ bool ZorkUL::processCommand(Command command) {
         cout << "         |         " << endl;
         cout << "         |         " << endl;
         cout << "[i] --- [d] --- [e]" << endl;
-    } else if (commandWord.compare("go") == 0)
+    }
+
+    else if (commandWord.compare("go") == 0)
         goRoom(command);
+
 
     else if (commandWord.compare("take") == 0) {
         if (!command.hasSecondWord()) {
@@ -101,27 +107,28 @@ bool ZorkUL::processCommand(Command command) {
                 const vector<Item>& roomItems = currentRoom->getItems();
                 Item takenItem = roomItems[location];
                 cout << "you have taken the " + itemName << endl;
-                cout << "Item explanation: " << endl;
-                cout << takenItem.getExplanation() << endl;
-                cout << endl;
-
-                // Check if the user types the correct command
-                string expectedCommand = takenItem.getItemCommand();
-                cout << "Enter the command '" << expectedCommand << "': ";
-                string userInput;
-                cin >> userInput;
-
-                actionAttempt(userInput, expectedCommand, takenItem, location);
-
                 currentRoom->removeItem(location);
+                if(!currentRoom->isEmpty()) {
+                    cout << "Item explanation: " << endl;
+                    cout << takenItem.getExplanation() << endl;
+                    cout << endl;
+
+                    // Check if the user types the correct command
+                    string expectedCommand = takenItem.getItemCommand();
+                    cout << "Enter the command '" << expectedCommand << "': ";
+                    string userInput;
+                    cin >> userInput;
+
+                    actionAttempt(userInput, expectedCommand, takenItem, location);
+                }
+                else{
+                    cout<< "Go to a new room"<< endl;
+                    cout<< currentRoom->exitString() <<endl;
+                }
             }
         }
     } else if (commandWord.compare("put") == 0) {
-        {
-
-        }
-        /*
-        {
+        /*{
         if (!command.hasSecondWord()) {
             cout << "incomplete input"<< endl;
             }
@@ -157,8 +164,19 @@ void ZorkUL::goRoom(Command command) {
     // Try to leave current room.
     Room* nextRoom = currentRoom->nextRoom(direction);
 
-    if (nextRoom == NULL)
+    if (nextRoom == NULL) {
         cout << "underdefined input" << endl;
+    }
+    else if(nextRoom->shortDescription() == "boxing"){
+        if (std::stoi(player.getStrength()) < 99){
+            cout<< "Get stronger!" << endl;
+            cout<< currentRoom->exitString() <<endl;
+        }
+        else{
+            currentRoom = nextRoom;
+            cout << currentRoom->equipmentDescription() << endl;
+        }
+    }
     else {
         currentRoom = nextRoom;
         cout << currentRoom->equipmentDescription() << endl;
@@ -176,27 +194,36 @@ string ZorkUL::go(string direction) {
 }
 
 void ZorkUL::actionAttempt(string userInput, string expectedCommand, Item takenItem, int location) {
-    // Compare the user input with the expected command
-    if (userInput == expectedCommand) {
-        // Generate a random number between 1 and 100
-        int randomNumber = rand() % 100 + 1;
-        // Check if the random number is less than or equal to the chance of success
-        if (randomNumber <= takenItem.getChance()) {
-            cout << "Well done! You successfully completed the action." << endl;
-            cout << currentRoom->awardDescription() << endl;
-            currentRoom->removeItem(location);
-        } else {
-            cout << "You failed to complete the action.Try again!" << endl;
-            string expectedCommand = takenItem.getItemCommand();
-            cout << "Enter the command '" << expectedCommand << "': ";
-            string userInput;
-            cin >> userInput;
-            actionAttempt(userInput, expectedCommand, takenItem, location);
+
+    if (!currentRoom->isEmpty()) {
+            if (userInput == expectedCommand) {
+                int randomNumber = rand() % 100 + 1;
+                if (randomNumber <= takenItem.getChance()) {
+                    cout << "Well done! You successfully completed the action." << endl;
+                    cout << currentRoom->awardDescription(currentRoom, location) << endl;
+                } else {
+                    cout << "You failed to complete the action.Try again!" << endl;
+                    string expectedCommand = takenItem.getItemCommand();
+                    cout << "Enter the command '" << expectedCommand << "': ";
+                    string userInput;
+                    cin >> userInput;
+                    actionAttempt(userInput, expectedCommand, takenItem, location);
+                }
+            } else {
+                cout << "Incorrect command. Try again." << endl;
+                string expectedCommand = takenItem.getItemCommand();
+                cout << "Enter the command '" << expectedCommand << "': ";
+                string userInput;
+                cin >> userInput;
+                actionAttempt(userInput, expectedCommand, takenItem, location);
+            }
         }
-    } else {
-        cout << "Incorrect command. Try again." << endl;
+
+    else {
+            cout << "Go to a new room" << endl;
+            cout << currentRoom->exitString();
+        }
     }
-}
 
 void ZorkUL::play() {
     printWelcome();

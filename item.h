@@ -18,6 +18,7 @@ private:
 public:
     Item(string inDescription, int inStrength, int inExperience);
     Item(string inDescription, int inChance, string inItemCommand);
+    void updateStats(string description);
     void setStrength(int inStrength);
     void setExperience(int inExperience);
     string getShortDescription() const;
