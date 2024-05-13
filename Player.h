@@ -11,6 +11,7 @@ public:
     void addStrength(string strength);
     string getExperience ();
     string getStrength();
+    virtual ~Player() {}
 
 private:
     std::string subject;

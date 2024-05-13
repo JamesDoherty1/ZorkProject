@@ -1,18 +1,15 @@
 #include "Room.h"
-#include <cstdlib>
 
-Room::Room(string description, Player& player) : player(player) {
-    this->description = description;
-}
+Room::Room(string description, Player& player) : description(description), player(player) {}
 
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
-    if (north != NULL)
+    if (north != nullptr)
         exits["north"] = north;
-    if (east != NULL)
+    if (east != nullptr)
         exits["east"] = east;
-    if (south != NULL)
+    if (south != nullptr)
         exits["south"] = south;
-    if (west != NULL)
+    if (west != nullptr)
         exits["west"] = west;
 }
 
@@ -28,13 +25,14 @@ string Room::equipmentDescription() {
     if (!itemsInRoom.empty()) {
         description += "Items in room:\n";
         for (const Item& item : itemsInRoom) {
-            if (!item.getIsAward()) {
+            if(!item.getIsAward()) {
                 description += "- " + item.getShortDescription() + "\n";
             }
         }
     }
     return description;
 }
+
 string Room::awardDescription(Room* currentRoom, int location) {
     string description;
     if (!itemsInRoom.empty()) {
@@ -56,19 +54,17 @@ string Room::awardDescription(Room* currentRoom, int location) {
     return description;
 }
 
-
-
 string Room::exitString() {
     string returnString = "exits =";
-    for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
-        returnString += "  " + i->first;
+    for (const auto& exit : exits)
+        returnString += "  " + exit.first;
     return returnString;
 }
 
 Room* Room::nextRoom(string direction) {
-    map<string, Room*>::iterator next = exits.find(direction);
+    auto next = exits.find(direction);
     if (next == exits.end())
-        return NULL;
+        return nullptr;
     return next->second;
 }
 
@@ -77,27 +73,15 @@ void Room::addItem(Item *inItem) {
 }
 
 int Room::isItemInRoom(string inString) {
-    int sizeItems = itemsInRoom.size();
-    if (sizeItems < 1) {
-        return -1;
-    } else {
-        for (int x = 0; x < sizeItems; x++) {
-            int tempFlag = inString.compare(itemsInRoom[x].getShortDescription());
-            if (tempFlag == 0) {
-                return x;
-            }
-        }
+    for (int i = 0; i < itemsInRoom.size(); ++i) {
+        if (inString == itemsInRoom[i].getShortDescription())
+            return i;
     }
     return -1;
 }
 
-bool Room::performTask() {
-    int randomNumber = rand() % 100 + 1;
-    if (randomNumber <= successPercentage) {
-        return true;
-    } else {
-        return false;
-    }
+bool Room::isEmpty() const {
+    return itemsInRoom.empty();
 }
 
 const vector<Item>& Room::getItems() const {
@@ -106,8 +90,4 @@ const vector<Item>& Room::getItems() const {
 
 void Room::removeItem(int index) {
     itemsInRoom.erase(itemsInRoom.begin() + index);
-}
-
-bool Room::isEmpty() const {
-    return itemsInRoom.empty();
 }

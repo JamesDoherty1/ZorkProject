@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ZorkUL.h"
+#include "BoxingRoom.h"
 
 using namespace std;
 
@@ -39,7 +40,7 @@ void ZorkUL::createRooms()  {
     tennis = new Room("tennis", player);
         tennis->addItem(new Item("racket", 60, "serve"));
         tennis->addItem(new Item("trophy", 24, 5));
-    boxing = new Room("boxing", player);
+    boxing = new BoxingRoom("boxing", player);
         boxing->addItem(new Item("gloves", 30, "box"));
         boxing->addItem(new Item("belt", 1, 5));
     golf = new Room("golf", player);
@@ -108,26 +109,31 @@ bool ZorkUL::processCommand(Command command) {
                 Item takenItem = roomItems[location];
                 cout << "you have taken the " + itemName << endl;
                 currentRoom->removeItem(location);
-                if(!currentRoom->isEmpty()) {
-                    cout << "Item explanation: " << endl;
-                    cout << takenItem.getExplanation() << endl;
-                    cout << endl;
+                if (itemName == "belt") {
+                    cout << "Congratulations! You have won the game by taking the belt." << endl;
+                    return true; // Signal to quit the game
+                } else {
+                    if (!currentRoom->isEmpty()) {
+                        cout << "Item explanation: " << endl;
+                        cout << takenItem.getExplanation() << endl;
+                        cout << endl;
 
-                    // Check if the user types the correct command
-                    string expectedCommand = takenItem.getItemCommand();
-                    cout << "Enter the command '" << expectedCommand << "': ";
-                    string userInput;
-                    cin >> userInput;
+                        // Check if the user types the correct command
+                        string expectedCommand = takenItem.getItemCommand();
+                        cout << "Enter the command '" << expectedCommand << "': ";
+                        string userInput;
+                        cin >> userInput;
 
-                    actionAttempt(userInput, expectedCommand, takenItem, location);
-                }
-                else{
-                    cout<< "Go to a new room"<< endl;
-                    cout<< currentRoom->exitString() <<endl;
+                        actionAttempt(userInput, expectedCommand, takenItem, location);
+                    } else {
+                        cout << "Go to a new room" << endl;
+                        cout << currentRoom->exitString() << endl;
+                    }
                 }
             }
         }
-    } else if (commandWord.compare("put") == 0) {
+
+} else if (commandWord.compare("put") == 0) {
         /*{
         if (!command.hasSecondWord()) {
             cout << "incomplete input"<< endl;

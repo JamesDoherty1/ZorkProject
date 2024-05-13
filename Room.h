@@ -9,34 +9,30 @@
 #include "Player.h"
 
 using namespace std;
-using std::vector;
 
 class Room {
 
 private:
     string description;
-    string taskDescription;
-    int successPercentage;
     map<string, Room*> exits;
     vector<Item> itemsInRoom;
     Player& player;
 
 public:
-    Room(string description, Player& Player);
-    void setExits(Room *north, Room *east, Room *south, Room *west);
-    string shortDescription();
-    string equipmentDescription();
-    string awardDescription(Room* currentRoom, int location);
-    string exitString();
-    stringstream descriptionStream;
-    Room* nextRoom(string direction);
-    void addItem(Item *inItem);
-    int isItemInRoom(string inString);
-    bool performTask();
-    bool isEmpty() const;
-    const vector<Item>& getItems() const;
+    Room(string description, Player& player);
+    virtual ~Room() = default; // Virtual destructor for polymorphic behavior
 
-    void removeItem(int index);
+    virtual void setExits(Room *north, Room *east, Room *south, Room *west);
+    virtual string shortDescription();
+    virtual string equipmentDescription();
+    virtual string awardDescription(Room* currentRoom, int location);
+    virtual string exitString();
+    virtual Room* nextRoom(string direction);
+    virtual void addItem(Item *inItem);
+    virtual int isItemInRoom(string inString);
+    virtual bool isEmpty() const;
+    virtual const vector<Item>& getItems() const;
+    virtual void removeItem(int index);
 };
 
-#endif
+#endif // ROOM_H_
