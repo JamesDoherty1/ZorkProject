@@ -26,6 +26,7 @@ public:
     string go(string direction);
     void actionAttempt(string userInput, string expectedCommand, Item takenItem, int location);
     void play();
+    void setFinished(bool value);
 };
 
 #endif /*ZORKUL_H_*/

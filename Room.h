@@ -15,9 +15,10 @@ class Room {
 private:
     string description;
     map<string, Room*> exits;
-    vector<Item> itemsInRoom;
     Player& player;
 
+protected:
+    vector<Item> itemsInRoom;
 public:
     Room(string description, Player& player);
     virtual ~Room() = default; // Virtual destructor for polymorphic behavior

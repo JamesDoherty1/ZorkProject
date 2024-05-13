@@ -2,11 +2,12 @@
 #define BOXINGROOM_H_
 
 #include "Room.h"
-#include "Player.h" // Include Player.h since it's used in the constructor
+#include "Player.h"
 
 class BoxingRoom : public Room {
+
 public:
-    BoxingRoom(string description, Player& player);
+    BoxingRoom(string description, Player& player); // Add ZorkUL& game as a parameter
 
     // Override awardDescription to handle winning the game
     string awardDescription(Room* currentRoom, int location) override;

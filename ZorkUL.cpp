@@ -99,20 +99,18 @@ bool ZorkUL::processCommand(Command command) {
     else if (commandWord.compare("take") == 0) {
         if (!command.hasSecondWord()) {
             cout << "incomplete input" << endl;
-        } else {
+        }
+        else {
             string itemName = command.getSecondWord();
             int location = currentRoom->isItemInRoom(itemName);
             if (location < 0) {
                 cout << "the item is not in the room" << endl;
-            } else {
+            }
+            else {
                 const vector<Item>& roomItems = currentRoom->getItems();
                 Item takenItem = roomItems[location];
                 cout << "you have taken the " + itemName << endl;
                 currentRoom->removeItem(location);
-                if (itemName == "belt") {
-                    cout << "Congratulations! You have won the game by taking the belt." << endl;
-                    return true; // Signal to quit the game
-                } else {
                     if (!currentRoom->isEmpty()) {
                         cout << "Item explanation: " << endl;
                         cout << takenItem.getExplanation() << endl;
@@ -131,7 +129,7 @@ bool ZorkUL::processCommand(Command command) {
                     }
                 }
             }
-        }
+
 
 } else if (commandWord.compare("put") == 0) {
         /*{
