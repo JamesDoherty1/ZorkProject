@@ -23,29 +23,29 @@ void ZorkUL::createRooms()  {
     entrance = new Room("entrance", player);
 
     soccer = new Room("soccer", player);
-        soccer->addItem(new Item("football", 50, "shoot"));
-        soccer->addItem(new Item("cup", 25, 5));
+    soccer->addItem(new Item("football", 50, "shoot"));
+    soccer->addItem(new Item("cup", 25, 5));
     basketball = new Room("basketball", player);
-        basketball->addItem(new Item("basketball", 80, "throw"));
-        basketball->addItem(new Item("mvp", 10, 5));
+    basketball->addItem(new Item("basketball", 80, "throw"));
+    basketball->addItem(new Item("mvp", 10, 5));
     sprint = new Room("sprint", player);
-        sprint->addItem(new Item("runners", 75, "sprint"));
-        sprint->addItem(new Item("medal", 15, 5));
+    sprint->addItem(new Item("runners", 75, "sprint"));
+    sprint->addItem(new Item("medal", 15, 5));
     swim = new Room("swim", player);
-        swim->addItem(new Item("goggles", 50, "swim"));
-        swim->addItem(new Item("medal", 50, 5));
+    swim->addItem(new Item("goggles", 50, "swim"));
+    swim->addItem(new Item("medal", 50, 5));
     chess = new Room("chess", player);
-        chess->addItem(new Item("king", 10, "play"));
-        chess->addItem(new Item("trophy", 24, 5));
+    chess->addItem(new Item("king", 10, "play"));
+    chess->addItem(new Item("trophy", 24, 5));
     tennis = new Room("tennis", player);
-        tennis->addItem(new Item("racket", 60, "serve"));
-        tennis->addItem(new Item("trophy", 24, 5));
+    tennis->addItem(new Item("racket", 60, "serve"));
+    tennis->addItem(new Item("trophy", 24, 5));
     boxing = new BoxingRoom("boxing", player);
-        boxing->addItem(new Item("gloves", 30, "box"));
-        boxing->addItem(new Item("belt", 1, 5));
+    boxing->addItem(new Item("gloves", 30, "box"));
+    boxing->addItem(new Item("belt", 1, 5));
     golf = new Room("golf", player);
-        golf->addItem(new Item("club", 1, "swing"));
-        golf->addItem(new Item("voucher", 99, 5));
+    golf->addItem(new Item("club", 1, "swing"));
+    golf->addItem(new Item("voucher", 99, 5));
 
 //             (N, E, S, W)
     entrance->setExits(NULL, soccer, golf, basketball);
@@ -111,27 +111,27 @@ bool ZorkUL::processCommand(Command command) {
                 Item takenItem = roomItems[location];
                 cout << "you have taken the " + itemName << endl;
                 currentRoom->removeItem(location);
-                    if (!currentRoom->isEmpty()) {
-                        cout << "Item explanation: " << endl;
-                        cout << takenItem.getExplanation() << endl;
-                        cout << endl;
+                if (!currentRoom->isEmpty()) {
+                    cout << "Item explanation: " << endl;
+                    cout << takenItem.getExplanation() << endl;
+                    cout << endl;
 
-                        // Check if the user types the correct command
-                        string expectedCommand = takenItem.getItemCommand();
-                        cout << "Enter the command '" << expectedCommand << "': ";
-                        string userInput;
-                        cin >> userInput;
+                    // Check if the user types the correct command
+                    string expectedCommand = takenItem.getItemCommand();
+                    cout << "Enter the command '" << expectedCommand << "': ";
+                    string userInput;
+                    cin >> userInput;
 
-                        actionAttempt(userInput, expectedCommand, takenItem, location);
-                    } else {
-                        cout << "Go to a new room" << endl;
-                        cout << currentRoom->exitString() << endl;
-                    }
+                    actionAttempt(userInput, expectedCommand, takenItem, location);
+                } else {
+                    cout << "Go to a new room" << endl;
+                    cout << currentRoom->exitString() << endl;
                 }
             }
+        }
 
 
-} else if (commandWord.compare("put") == 0) {
+    } else if (commandWord.compare("put") == 0) {
         /*{
         if (!command.hasSecondWord()) {
             cout << "incomplete input"<< endl;
@@ -200,34 +200,34 @@ string ZorkUL::go(string direction) {
 void ZorkUL::actionAttempt(string userInput, string expectedCommand, Item takenItem, int location) {
 
     if (!currentRoom->isEmpty()) {
-            if (userInput == expectedCommand) {
-                int randomNumber = rand() % 100 + 1;
-                if (randomNumber <= takenItem.getChance()) {
-                    cout << "Well done! You successfully completed the action." << endl;
-                    cout << currentRoom->awardDescription(currentRoom, location) << endl;
-                } else {
-                    cout << "You failed to complete the action.Try again!" << endl;
-                    string expectedCommand = takenItem.getItemCommand();
-                    cout << "Enter the command '" << expectedCommand << "': ";
-                    string userInput;
-                    cin >> userInput;
-                    actionAttempt(userInput, expectedCommand, takenItem, location);
-                }
+        if (userInput == expectedCommand) {
+            int randomNumber = rand() % 100 + 1;
+            if (randomNumber <= takenItem.getChance()) {
+                cout << "Well done! You successfully completed the action." << endl;
+                cout << currentRoom->awardDescription(currentRoom, location) << endl;
             } else {
-                cout << "Incorrect command. Try again." << endl;
+                cout << "You failed to complete the action.Try again!" << endl;
                 string expectedCommand = takenItem.getItemCommand();
                 cout << "Enter the command '" << expectedCommand << "': ";
                 string userInput;
                 cin >> userInput;
                 actionAttempt(userInput, expectedCommand, takenItem, location);
             }
-        }
-
-    else {
-            cout << "Go to a new room" << endl;
-            cout << currentRoom->exitString();
+        } else {
+            cout << "Incorrect command. Try again." << endl;
+            string expectedCommand = takenItem.getItemCommand();
+            cout << "Enter the command '" << expectedCommand << "': ";
+            string userInput;
+            cin >> userInput;
+            actionAttempt(userInput, expectedCommand, takenItem, location);
         }
     }
+
+    else {
+        cout << "Go to a new room" << endl;
+        cout << currentRoom->exitString();
+    }
+}
 
 void ZorkUL::play() {
     printWelcome();

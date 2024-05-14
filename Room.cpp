@@ -40,11 +40,11 @@ string Room::awardDescription(Room* currentRoom, int location) {
         for (const Item &item: itemsInRoom) {
             if (item.getIsAward()) {
                 cout << item.getShortDescription() << endl;
-                cout << "You have gained " + to_string(item.getAwardExperience()) + " Experience, and " +
-                        to_string(item.getAwardStrength()) + " Strength" << endl;
+                cout << "You have gained " + to_string(item.getAwardExperience().getValue()) + " Experience, and " +
+                        to_string(item.getAwardStrength().getValue()) + " Strength" << endl;
 
-                player.addExperience(std::to_string(item.getAwardExperience()));
-                player.addStrength(std::to_string(item.getAwardStrength()));
+                player.addExperience(std::to_string(item.getAwardExperience().getValue()));
+                player.addStrength(std::to_string(item.getAwardStrength().getValue()));
 
                 cout<< "Total Experience: " + player.getExperience() << endl;
                 cout<< "Total Strength: " + player.getStrength() << endl;

@@ -4,14 +4,15 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include "Attribute.h"
 using namespace std;
 
 class Item {
 private:
     string description;
     string itemCommand;
-    int awardStrength;
-    int awardExperience;
+    Attribute<int> awardStrength;
+    Attribute<int> awardExperience;
     int chance;
     bool isAward;
 
@@ -27,8 +28,8 @@ public:
     string getItemCommand();
     bool getIsAward() const;
     int getChance();
-    int getAwardStrength()const;
-    int getAwardExperience()const;
+    const Attribute<int> getAwardStrength()const;
+    const Attribute<int> getAwardExperience()const;
 };
 
 #endif /*ITEM_H_*/

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <string>
+#include "Attribute.h"
 using namespace std;
 
 class Player {
@@ -15,8 +16,8 @@ public:
 
 private:
     std::string subject;
-    int totalExperience;
-    int totalStrength;
+    Attribute<int> totalExperience;
+    Attribute<int> totalStrength;
 
 };
 

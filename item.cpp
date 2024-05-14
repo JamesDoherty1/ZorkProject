@@ -2,9 +2,8 @@
 
 Item::Item(string inDescription, int inStrength, int inExperience) {
     description = inDescription;
-    setStrength(inStrength);
-    awardStrength = inStrength;
-    awardExperience = inExperience;
+    awardStrength = Attribute<int>(inStrength); // Initialize with provided strength
+    awardExperience = Attribute<int>(inExperience); // Initialize with provided experience
     isAward = true;
 }
 
@@ -52,10 +51,10 @@ string Item::getItemCommand(){
     return itemCommand;
 }
 
-int Item::getAwardStrength() const {
+const Attribute<int> Item::getAwardStrength() const {
     return awardStrength;
 }
 
-int Item::getAwardExperience() const {
+const Attribute<int> Item::getAwardExperience() const {
     return awardExperience;
 }

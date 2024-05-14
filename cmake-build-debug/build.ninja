@@ -97,6 +97,12 @@ build CMakeFiles/ZorkProject.dir/BoxingRoom.cpp.obj: CXX_COMPILER__ZorkProject_u
   OBJECT_DIR = CMakeFiles\ZorkProject.dir
   OBJECT_FILE_DIR = CMakeFiles\ZorkProject.dir
 
+build CMakeFiles/ZorkProject.dir/Attribute.cpp.obj: CXX_COMPILER__ZorkProject_unscanned_Debug C$:/Users/jkdoh/CLionProjects/Zork/Attribute.cpp || cmake_object_order_depends_target_ZorkProject
+  DEP_FILE = CMakeFiles\ZorkProject.dir\Attribute.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ZorkProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ZorkProject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ZorkProject
@@ -105,7 +111,7 @@ build CMakeFiles/ZorkProject.dir/BoxingRoom.cpp.obj: CXX_COMPILER__ZorkProject_u
 #############################################
 # Link the executable ZorkProject.exe
 
-build ZorkProject.exe: CXX_EXECUTABLE_LINKER__ZorkProject_Debug CMakeFiles/ZorkProject.dir/Player.cpp.obj CMakeFiles/ZorkProject.dir/Command.cpp.obj CMakeFiles/ZorkProject.dir/CommandWords.cpp.obj CMakeFiles/ZorkProject.dir/item.cpp.obj CMakeFiles/ZorkProject.dir/Parser.cpp.obj CMakeFiles/ZorkProject.dir/Room.cpp.obj CMakeFiles/ZorkProject.dir/ZorkUL.cpp.obj CMakeFiles/ZorkProject.dir/BoxingRoom.cpp.obj
+build ZorkProject.exe: CXX_EXECUTABLE_LINKER__ZorkProject_Debug CMakeFiles/ZorkProject.dir/Player.cpp.obj CMakeFiles/ZorkProject.dir/Command.cpp.obj CMakeFiles/ZorkProject.dir/CommandWords.cpp.obj CMakeFiles/ZorkProject.dir/item.cpp.obj CMakeFiles/ZorkProject.dir/Parser.cpp.obj CMakeFiles/ZorkProject.dir/Room.cpp.obj CMakeFiles/ZorkProject.dir/ZorkUL.cpp.obj CMakeFiles/ZorkProject.dir/BoxingRoom.cpp.obj CMakeFiles/ZorkProject.dir/Attribute.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ZorkProject.dir

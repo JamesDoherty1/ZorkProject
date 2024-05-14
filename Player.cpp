@@ -14,9 +14,9 @@ void Player::addStrength(string strength) {
 }
 
 string Player::getExperience() {
-    return std::to_string(totalExperience);
+    return std::to_string(totalExperience.getValue());
 }
 
 string Player::getStrength() {
-    return std::to_string(totalStrength);
+    return std::to_string(totalStrength.getValue());
 }

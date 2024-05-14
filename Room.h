@@ -7,6 +7,7 @@
 #include <sstream>
 #include "item.h"
 #include "Player.h"
+#include "Attribute.h"
 
 using namespace std;
 
