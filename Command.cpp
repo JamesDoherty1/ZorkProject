@@ -14,7 +14,7 @@ string Command::getSecondWord() {
 }
 
 bool Command::isUnknown() {
-    return (commandWord.empty());
+    return false;
 }
 
 bool Command::hasSecondWord() {

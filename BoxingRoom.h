@@ -3,17 +3,17 @@
 
 #include "Room.h"
 #include "Player.h"
+#include "StartFinish.h"
 
-class BoxingRoom : public Room {
+class BoxingRoom : public Room,  public StartFinish {
 
 public:
     BoxingRoom(string description, Player& player); // Add ZorkUL& game as a parameter
 
-    // Override awardDescription to handle winning the game
     string awardDescription(Room* currentRoom, int location) override;
 
-    // Override nextRoom to handle special conditions for the boxing room
     Room* nextRoom(string direction) override;
+
 };
 
 #endif // BOXINGROOM_H_

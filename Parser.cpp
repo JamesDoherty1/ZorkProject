@@ -12,7 +12,7 @@ Command* Parser::getCommand() {
     string buffer;
     vector<string> words;
 
-    cout << "> ";
+    cout << ">";
 
     getline(cin, buffer, '\n');
 

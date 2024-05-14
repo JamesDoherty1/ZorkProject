@@ -9,6 +9,12 @@ add_executable(ZorkProject
         Player.cpp Player.h Command.cpp Command.h CommandWords.cpp CommandWords.h item.cpp item.h Parser.cpp Parser.h Room.cpp Room.h ZorkUL.cpp ZorkUL.h BoxingRoom.cpp BoxingRoom.h
         Attribute.cpp
         Attribute.h
+        EntranceRoom.cpp
+        EntranceRoom.h
+        StartFinish.cpp
+        StartFinish.h
+        GameException.h
+        GameException.cpp
 )
 
 include(GNUInstallDirs)

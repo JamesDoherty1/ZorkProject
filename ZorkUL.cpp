@@ -1,6 +1,8 @@
 #include <iostream>
 #include "ZorkUL.h"
 #include "BoxingRoom.h"
+#include "EntranceRoom.h"
+#include "GameException.h"
 
 using namespace std;
 
@@ -9,6 +11,7 @@ int main() {
 
     // Start the game
     game.play();
+
 
     return 0;
 }
@@ -21,7 +24,8 @@ void ZorkUL::createRooms()  {
     Room *entrance, *soccer, *basketball, *sprint, *swim, *chess, *tennis, *boxing, *golf;
 
     entrance = new Room("entrance", player);
-
+    entrance->addItem(new Item("key", 50, "open"));
+    entrance->addItem(new Item("water", 25, 5));
     soccer = new Room("soccer", player);
     soccer->addItem(new Item("football", 50, "shoot"));
     soccer->addItem(new Item("cup", 25, 5));
@@ -64,18 +68,26 @@ void ZorkUL::createRooms()  {
 
 void ZorkUL::printWelcome() {
     cout << "start" << endl;
-    cout << "info for help" << endl;
-    cout << "Work through the arena and beat Mike Tyson to Win!";
-    cout << "To enter the boxing room you are required to have 99 Strength";
-    cout << endl;
+    cout << "Work through the arena and beat Mike Tyson to Win!" << endl;
+    cout << currentRoom->shortDescription() <<endl;
     cout << currentRoom->equipmentDescription() << endl;
 }
 
 bool ZorkUL::processCommand(Command command) {
-    if (command.isUnknown()) {
-        cout << "invalid input" << endl;
-        return false;
+    try {
+        if (command.isUnknown()) {
+            throw GameException("Invalid input");
+        }
     }
+    catch(const GameException& ex) {
+        std::cerr << "Game Exception: " << ex.what() << std::endl;
+    } catch(const std::exception& ex) {
+        std::cerr << "Standard Exception: " << ex.what() << std::endl;
+    } catch(...) {
+        std::cerr << "Unknown Exception occurred" << std::endl;
+    }
+
+
 
     string commandWord = command.getCommandWord();
     if (commandWord.compare("info") == 0)
@@ -98,7 +110,7 @@ bool ZorkUL::processCommand(Command command) {
 
     else if (commandWord.compare("take") == 0) {
         if (!command.hasSecondWord()) {
-            cout << "incomplete input" << endl;
+            throw GameException("incomplete input");
         }
         else {
             string itemName = command.getSecondWord();
@@ -130,22 +142,9 @@ bool ZorkUL::processCommand(Command command) {
             }
         }
 
-
-    } else if (commandWord.compare("put") == 0) {
-        /*{
-        if (!command.hasSecondWord()) {
-            cout << "incomplete input"<< endl;
-            }
-            else
-                if (command.hasSecondWord()) {
-                cout << "you're adding " + command.getSecondWord() << endl;
-                itemsInRoom.push_Back;
-            }
-        }
-    */
     } else if (commandWord.compare("quit") == 0) {
         if (command.hasSecondWord())
-            cout << "overdefined input" << endl;
+            throw GameException("overdefined input");
         else
             return true; /**signal to quit*/
     }
@@ -159,7 +158,7 @@ void ZorkUL::printHelp() {
 
 void ZorkUL::goRoom(Command command) {
     if (!command.hasSecondWord()) {
-        cout << "incomplete input" << endl;
+        throw GameException("Incomplete input");
         return;
     }
 
@@ -169,7 +168,7 @@ void ZorkUL::goRoom(Command command) {
     Room* nextRoom = currentRoom->nextRoom(direction);
 
     if (nextRoom == NULL) {
-        cout << "underdefined input" << endl;
+        cout<<"You've hit a wall!" <<endl;
     }
     else if(nextRoom->shortDescription() == "boxing"){
         if (std::stoi(player.getStrength()) < 99){

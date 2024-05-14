@@ -35,7 +35,7 @@ string Room::equipmentDescription() {
 
 string Room::awardDescription(Room* currentRoom, int location) {
     string description;
-    if (!itemsInRoom.empty()) {
+    if (!itemsInRoom.empty() && currentRoom->shortDescription() != "entrance") {
         cout << "You have won the following items:" << endl;
         for (const Item &item: itemsInRoom) {
             if (item.getIsAward()) {
@@ -48,8 +48,13 @@ string Room::awardDescription(Room* currentRoom, int location) {
 
                 cout<< "Total Experience: " + player.getExperience() << endl;
                 cout<< "Total Strength: " + player.getStrength() << endl;
+
             }
         }
+    }
+    else if(currentRoom->shortDescription() == "entrance"){
+        cout << "Go to a new room" << endl;
+        cout << currentRoom->exitString() << endl;
     }
     return description;
 }
