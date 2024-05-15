@@ -3,7 +3,13 @@
 
 #include <string>
 #include "Attribute.h"
+
 using namespace std;
+
+// Bit structure to represent player's strength status
+struct StrengthStatus {
+    unsigned int isStrong : 1;
+};
 
 class Player {
 public:
@@ -13,13 +19,16 @@ public:
     void addStrength(string strength);
     string getExperience ();
     string getStrength();
+    void setStrong();
+    void clearStrong();
+    bool isPlayerStrong() const;
     virtual ~Player() {}
 
 private:
     std::string subject;
     Attribute<int> totalExperience;
     Attribute<int> totalStrength;
-
+    StrengthStatus strengthStatus; // Bit field to represent strength status
 };
 
 #endif // PLAYER_H

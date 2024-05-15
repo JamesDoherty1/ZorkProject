@@ -172,12 +172,16 @@ void ZorkUL::goRoom(Command command) {
     }
     else if(nextRoom->shortDescription() == "boxing"){
         if (std::stoi(player.getStrength()) < 99){
+            player.clearStrong();
             cout<< "Get stronger!" << endl;
             cout<< currentRoom->exitString() <<endl;
         }
         else{
-            currentRoom = nextRoom;
-            cout << currentRoom->equipmentDescription() << endl;
+            player.setStrong();
+            if(player.isPlayerStrong()){
+                currentRoom = nextRoom;
+                cout << currentRoom->equipmentDescription() << endl;
+            }
         }
     }
     else {
