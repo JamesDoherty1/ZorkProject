@@ -22,6 +22,7 @@ protected:
     vector<Item> itemsInRoom;
 public:
     Room(string description, Player& player);
+    Room(const Room& other);
     virtual ~Room() = default; // Virtual destructor for polymorphic behavior
 
     virtual void setExits(Room *north, Room *east, Room *south, Room *west);

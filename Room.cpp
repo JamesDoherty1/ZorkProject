@@ -2,6 +2,10 @@
 
 Room::Room(string description, Player& player) : description(description), player(player) {}
 
+Room::Room(const Room& other)
+        : description(other.description), exits(other.exits), player(other.player), itemsInRoom(other.itemsInRoom) {}
+
+
 void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
     if (north != nullptr)
         exits["north"] = north;

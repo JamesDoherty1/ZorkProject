@@ -14,6 +14,11 @@ Item::Item(string inDescription, int inChance, string inItemCommand) {
     isAward = false;
 }
 
+Item::Item(const Item& other)
+        : description(other.description), itemCommand(other.itemCommand),
+          awardStrength(other.awardStrength), awardExperience(other.awardExperience),
+          chance(other.chance), isAward(other.isAward) {}
+
 void Item::setStrength(int inStrength) {
     if (inStrength > 9999 || inStrength < 0)
         cout << "strength invalid, must be 0<strength<9999";

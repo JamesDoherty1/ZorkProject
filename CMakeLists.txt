@@ -15,6 +15,7 @@ add_executable(ZorkProject
         StartFinish.h
         GameException.h
         GameException.cpp
+        StartFinish.cpp
 )
 
 include(GNUInstallDirs)

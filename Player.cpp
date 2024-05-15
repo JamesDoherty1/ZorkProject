@@ -2,8 +2,10 @@
 
 Player::Player(const string& name, int age, const string& subject)
         : totalExperience(0), totalStrength(0) {
-    // Constructor implementation
 }
+
+Player::Player(const Player& other)
+        : subject(other.subject), totalExperience(other.totalExperience), totalStrength(other.totalStrength) {}
 
 void Player::addExperience(string experience) {
     totalExperience += std::stoi(experience);

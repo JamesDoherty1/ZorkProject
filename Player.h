@@ -8,6 +8,7 @@ using namespace std;
 class Player {
 public:
     Player(const string& name, int age, const string& subject);
+    Player(const Player& other);
     void addExperience(string experience);
     void addStrength(string strength);
     string getExperience ();

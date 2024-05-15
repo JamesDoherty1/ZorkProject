@@ -10,9 +10,8 @@ class BoxingRoom : public Room,  public StartFinish {
 public:
     BoxingRoom(string description, Player& player); // Add ZorkUL& game as a parameter
 
-    string awardDescription(Room* currentRoom, int location) override;
-
-    Room* nextRoom(string direction) override;
+    string awardDescription(Room* currentRoom, int location); // Remove 'override'
+    Room* nextRoom(string direction); // Remove 'override'
 
 };
 
