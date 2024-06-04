@@ -1,47 +1,69 @@
 #include "item.h"
 
-Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/) {
-	description = inDescription;
-	setWeight(inWeightGrams);
-	value = inValue;
-	/**weaponCheck(isWeapon);*/
+Item::Item()
+    : description(""), itemCommand(""), awardStrength(0), awardExperience(0), chance(0), isAward(false) {
 }
 
-Item::Item(string inDescription) {
-	description = inDescription;
+Item::Item(string inDescription, int inStrength, int inExperience) {
+    description = inDescription;
+    awardStrength = Attribute<int>(inStrength); // Initialize with provided strength
+    awardExperience = Attribute<int>(inExperience); // Initialize with provided experience
+    isAward = true;
 }
 
-void Item::setWeight(int inWeightGrams)
-{
-    if (inWeightGrams > 9999 || inWeightGrams < 0)
-       cout << "weight invalid, must be 0<weight<9999" ;
+Item::Item(string inDescription, int inChance, string inItemCommand) {
+    description = inDescription;
+    chance = inChance;
+    itemCommand = inItemCommand;
+    isAward = false;
+}
+
+Item::Item(const Item& other)
+    : description(other.description), itemCommand(other.itemCommand),
+    awardStrength(other.awardStrength), awardExperience(other.awardExperience),
+    chance(other.chance), isAward(other.isAward) {}
+
+void Item::setStrength(int inStrength) {
+    if (inStrength > 9999 || inStrength < 0)
+        cout << "strength invalid, must be 0<strength<9999";
     else
-	   weightGrams = inWeightGrams;
+        awardStrength = inStrength;
 }
 
-void Item::setValue(float inValue)
-{
-    if (inValue > 9999 || inValue < 0)
-       cout << "value invalid, must be 0<value<9999" ;
+void Item::setExperience(int inExperience) {
+    if (inExperience > 9999 || inExperience < 0)
+        cout << "experience invalid, must be 0<experience<9999";
     else
-	   value = inValue;
+        awardExperience = inExperience;
 }
 
-/**void Item::setWeaponCheck(int isWeapon)
-{
-    if(isWeapon > 0 || isWeapon < 0)
-        cout << "Item not a weapon" ;
-    else
-        cout << "Item is a weapon" ;
-}*/
-
-string Item::getShortDescription()
-{
-	return description;
+string Item::getShortDescription() const {
+    return description;
 }
 
-string Item::getLongDescription()
-{
-	return " item(s), " + description + ".\n";
+string Item::getLongDescription() {
+    return " item(s), " + description + ".\n";
 }
 
+string Item::getExplanation() const{
+    return "Type '" + itemCommand + "' : You have a " + std::to_string(chance) + "% chance to win";
+}
+
+bool Item::getIsAward() const {
+    return isAward;
+}
+
+int Item::getChance() const{
+    return chance;
+}
+string Item::getItemCommand(){
+    return itemCommand;
+}
+
+const Attribute<int> Item::getAwardStrength() const {
+    return awardStrength;
+}
+
+const Attribute<int> Item::getAwardExperience() const {
+    return awardExperience;
+}
