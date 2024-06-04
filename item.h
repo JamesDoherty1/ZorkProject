@@ -4,27 +4,34 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include "Attribute.h"
 using namespace std;
 
 class Item {
 private:
-	string description;
-	string longDescription;
-	int weightGrams;
-	float value;
-	bool weaponCheck;
+    string description;
+    string itemCommand;
+    Attribute<int> awardStrength;
+    Attribute<int> awardExperience;
+    int chance;
+    bool isAward;
 
 public:
-    Item (string description, int inWeight, float inValue);
-    Item (string description);
-	string getShortDescription();
+    Item();
+    Item(string inDescription, int inStrength, int inExperience);
+    Item(string inDescription, int inChance, string inItemCommand);
+    Item(const Item& other);
+    void updateStats(string description);
+    void setStrength(int inStrength);
+    void setExperience(int inExperience);
+    string getShortDescription() const;
     string getLongDescription();
-	int getWeight();
-	void setWeight(int weightGrams);
-	float getValue();
-	void setValue(float value);
-	int getWeaponCheck();
-	void setWeaponCheck(int weaponCheck);
+    string getExplanation() const;
+    string getItemCommand();
+    bool getIsAward() const;
+    int getChance() const;
+    const Attribute<int> getAwardStrength() const;
+    const Attribute<int> getAwardExperience() const;
 };
 
-#endif /*ITEM_H_*/
+#endif /* ITEM_H_ */
