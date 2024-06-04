@@ -1,33 +1,51 @@
 #ifndef ROOM_H_
 #define ROOM_H_
 
+#include <QObject>
 #include <map>
 #include <string>
 #include <vector>
-#include "item.h"
-using namespace std;
-using std::vector;
+#include <sstream>
+#include "Item.h"
+#include "Player.h"
 
-class Room {
+class ZorkUL;
+
+
+class Room : public QObject {
+    Q_OBJECT
 
 private:
-	string description;
-	map<string, Room*> exits;
-	string exitString();
-    vector <Item> itemsInRoom;
+    string description;
+    map<string, Room*> exits;
+    Player& player;
 
+protected:
+    vector<Item> itemsInRoom;
+    ZorkUL& zorkUL;
 
 public:
-    int numberOfItems();
-	Room(string description);
-	void setExits(Room *north, Room *east, Room *south, Room *west);
-	string shortDescription();
-	string longDescription();
-	Room* nextRoom(string direction);
-    void addItem(Item *inItem);
-    string displayItem();
+    Room(string description, Player& player, ZorkUL& zorkUL);
+    Room(const Room& other);
+    virtual ~Room() = default;
+
+    void setExits(Room* north, Room* east, Room* south, Room* west);
+    string shortDescription();
+    string equipmentDescription();
+    virtual string awardDescription(Room* currentRoom, int location);
+    string exitString();
+    virtual Room* nextRoom(string direction);
+    void addItem(Item* inItem);
     int isItemInRoom(string inString);
-    void removeItemFromRoom(int location);
+    bool isEmpty() const;
+    const vector<Item>& getItems() const;
+    void removeItem(int index);
+    void GUIPrint(const string& message);
+signals:
+    void generalMessage(const QString& message);
+    void roomMessage(const QString& message);
+    void topMessage(const QString& message);
+    void scoreMessage(const QString& message);
 };
 
-#endif
+#endif // ROOM_H_
